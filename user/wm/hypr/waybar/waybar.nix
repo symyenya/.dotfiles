@@ -186,7 +186,7 @@ window#waybar {
             };
 
             "image"= {
-                exec="home/nya/.dotfiles/user/sh/album_art.sh";
+                exec="/home/nya/.dotfiles/user/sh/album_art.sh";
                 size= 36;
                 interval= 30;
             };
@@ -199,7 +199,7 @@ window#waybar {
 		            default= "▶";
 		            mpv= "🎵";
 	            };
-                interval= 2,
+                interval= 2;
 	            status-icons= {
 		            "paused"= "⏸";
 	            };
@@ -212,25 +212,25 @@ window#waybar {
             };
 
             "clock"= {
-                format= "{=%H=%M | %e %B}";
-                tooltip-format= "<big>{=%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-                format-alt= "{=%Y-%m-%d}";
+                format= "{:%H:%M | %e %B}";
+                tooltip-format= "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+                format-alt= "{:%Y-%m-%d}";
                 calendar= {
                     mode          = "year";
                     mode-mon-col  = 3;
                     weeks-pos    = "right";
                     on-scroll     = 1;
                     format= {
-                              "months"=     "<span color='#ffead3'><b>{}</b></span>";
-                              "days"=       "<span color='#c0caf5'><b>{}</b></span>";
-                              "weeks"=      "<span color='#99ffdd'><b>W{}</b></span>";
-                              "weekdays"=   "<span color='#ffcc66'><b>{}</b></span>";
-                              "today"=      "<span color='#ff6699'><b><u>{}</u></b></span>";
-                              }
+                              months=     "<span color='#ffead3'><b>{}</b></span>";
+                              days=       "<span color='#c0caf5'><b>{}</b></span>";
+                              weeks=      "<span color='#99ffdd'><b>W{}</b></span>";
+                              weekdays=   "<span color='#ffcc66'><b>{}</b></span>";
+                              today=      "<span color='#ff6699'><b><u>{}</u></b></span>";
+                              };
                     };
                 actions=  {
-                    "on-scroll-up"= "shift_up";
-                    "on-scroll-down"= "shift_down"
+                    on-scroll-up= "shift_up";
+                    on-scroll-down= "shift_down";
                     };
             };
 
@@ -238,7 +238,7 @@ window#waybar {
                 format = "⏻ ";
 		        tooltip= false;
 		        menu= "on-click";
-		        menu-file= "/home/nya/user/xml/power_menu.xml";
+		        menu-file= "/home/nya/.dotfiles/user/xml/power_menu.xml";
 		        menu-actions= {
 			        lock= "hyprlock";
 			        shutdown= "shutdown";
