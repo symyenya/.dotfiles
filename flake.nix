@@ -27,7 +27,7 @@
         nyaOS = lib.nixosSystem {
           inherit system;
           modules = [
-            ./nixos/configuration.nix
+            ./configuration.nix
             lanzaboote.nixosModules.lanzaboote
 
             ({ pkgs, lib, ... }: {
@@ -54,7 +54,7 @@
       homeConfigurations = {
         nya = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          modules = [./home-manager/home.nix];
+          modules = [./home.nix];
         };
       };
     };
