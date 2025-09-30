@@ -21,7 +21,7 @@
     let
       lib = nixpkgs.lib;
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacy.Packages.${system};
+      pkgs = nixpkgs.legacyPackages.${system};
     in {
       nixosConfigurations = {
         nyaOS = lib.nixosSystem {
