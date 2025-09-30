@@ -136,7 +136,7 @@ window#waybar {
             modules-center= [
 	            "image"
                 "mpris"
-            ],
+            ];
             modules-right = [
 	            "pulseaudio"
                 "pulseaudio/slider"
@@ -162,8 +162,8 @@ window#waybar {
                 format-bluetooth= "{volume}% {icon}";
                 format-muted= "";
                 format-icons= {
-                    alsa_output.pci-0000_00_1f.3.analog-stereo= "";
-                    alsa_output.pci-0000_00_1f.3.analog-stereo-muted= "";
+                    "alsa_output.pci-0000_00_1f.3.analog-stereo"= "";
+                    "alsa_output.pci-0000_00_1f.3.analog-stereo-muted"= "";
                     headphone= "";
                     hands-free= "";
                     headset= "";
@@ -171,11 +171,81 @@ window#waybar {
                     phone-muted= "";
                     portable= "";
                     car= "";
-                    default= [""; ""];
+                    default= ["" ""];
                 };
                 scroll-step= 1;
                 on-click= "pavucontrol";
                 ignored-sinks= ["Easy Effects Sink"];
             };
+
+            "pulseaudio/slider"= {
+	            format="{}";
+                min= 0;
+    	        max= 100;
+    	        orientation="horizontal";
+            };
+
+            "image"= {
+                exec="home/nya/.dotfiles/user/sh/album_art.sh";
+                size= 36;
+                interval= 30;
+            };
+
+            "mpris"= {
+                player= "spotify";
+	            format= "{title} - {artist}";
+	            format-paused= "{status_icon} - {title} - {artist}";
+	            player-icons= {
+		            default= "▶";
+		            mpv= "🎵";
+	            };
+                interval= 2,
+	            status-icons= {
+		            "paused"= "⏸";
+	            };
+            };
+
+            "hyprland/language"= {
+                format= "  {}";
+                format-en= "EN";
+                format-ru= "RU";
+            };
+
+            "clock"= {
+                format= "{=%H=%M | %e %B}";
+                tooltip-format= "<big>{=%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+                format-alt= "{=%Y-%m-%d}";
+                calendar= {
+                    mode          = "year";
+                    mode-mon-col  = 3;
+                    weeks-pos    = "right";
+                    on-scroll     = 1;
+                    format= {
+                              "months"=     "<span color='#ffead3'><b>{}</b></span>";
+                              "days"=       "<span color='#c0caf5'><b>{}</b></span>";
+                              "weeks"=      "<span color='#99ffdd'><b>W{}</b></span>";
+                              "weekdays"=   "<span color='#ffcc66'><b>{}</b></span>";
+                              "today"=      "<span color='#ff6699'><b><u>{}</u></b></span>";
+                              }
+                    };
+                actions=  {
+                    "on-scroll-up"= "shift_up";
+                    "on-scroll-down"= "shift_down"
+                    };
+            };
+
+            "custom/power"= {
+                format = "⏻ ";
+		        tooltip= false;
+		        menu= "on-click";
+		        menu-file= "/home/nya/user/xml/power_menu.xml";
+		        menu-actions= {
+			        lock= "hyprlock";
+			        shutdown= "shutdown";
+			        reboot= "reboot";
+		        };
+            };
+        };
     };
+};
 }
