@@ -10,17 +10,24 @@
       # Optional but recommended to limit the size of your system closure.
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    home-manager = {
+      url = "github:nix-community/home-manager/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = {self, nixpkgs, lanzaboote, ...}:
+  outputs = {self, nixpkgs, lanzaboote, home-manager, ...}:
     let
       lib = nixpkgs.lib;
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacy.Packages.${system};
     in {
       nixosConfigurations = {
         nyaOS = lib.nixosSystem {
-          system = "x86_64-linux";
+          inherit system;
           modules = [
-            ./configuration.nix
+            ./nixos/configuration.nix
             lanzaboote.nixosModules.lanzaboote
 
             ({ pkgs, lib, ... }: {
@@ -42,6 +49,12 @@
               };
             })
           ];
+        };
+      };
+      homeConfigurations = {
+        nya = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [./home-manager/home.nix];
         };
       };
     };
