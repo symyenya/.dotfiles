@@ -3,6 +3,7 @@
 {
   imports = [
     ./user/wm/hypr/waybar/waybar.nix
+    ./user/sh/kitty/kitty.nix
   ];
 
 
