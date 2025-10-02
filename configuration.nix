@@ -147,6 +147,8 @@ python3
 pavucontrol
 rofi
 emacs
+vscode
+neofetch
   ];
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
