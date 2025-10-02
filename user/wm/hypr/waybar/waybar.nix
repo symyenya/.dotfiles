@@ -186,7 +186,7 @@ window#waybar {
             };
 
             "image"= {
-                exec="/home/nya/.dotfiles/user/sh/album_art.sh";
+                exec="./custom/album_art.sh";
                 size= 36;
                 interval= 30;
             };
@@ -238,7 +238,7 @@ window#waybar {
                 format = "⏻ ";
 		        tooltip= false;
 		        menu= "on-click";
-		        menu-file= "/home/nya/.dotfiles/user/xml/power_menu.xml";
+		        menu-file= "./custom/power_menu.xml";
 		        menu-actions= {
 			        lock= "hyprlock";
 			        shutdown= "shutdown";
