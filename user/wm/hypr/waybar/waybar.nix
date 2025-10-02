@@ -186,7 +186,7 @@ window#waybar {
             };
 
             "image"= {
-                exec="./custom/album_art.sh";
+                exec="user/wm/hypr/waybar/custom/album_art.sh";
                 size= 36;
                 interval= 30;
             };
@@ -238,7 +238,7 @@ window#waybar {
                 format = "⏻ ";
 		        tooltip= false;
 		        menu= "on-click";
-		        menu-file= "./custom/power_menu.xml";
+		        menu-file= "user/wm/hypr/waybar/custom/power_menu.xml";
 		        menu-actions= {
 			        lock= "hyprlock";
 			        shutdown= "shutdown";

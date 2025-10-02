@@ -5,5 +5,5 @@ then
    # spotify is dead, we should die too.
    exit
 fi
-curl -s  "${album_art}" --output "/home/nya/.dotfiles/user/sh/output/cover.jpeg"
-echo "/home/nya/.dotfiles/user/sh/output/cover.jpeg"
+curl -s  "${album_art}" --output "./output/cover.jpeg"
+echo "./output/cover.jpeg"
