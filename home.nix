@@ -7,6 +7,7 @@ in
   imports = [
     (import ./user/wm/hypr/waybar/waybar.nix {homePath = userhomePath;}) 
     ./user/sh/kitty/kitty.nix
+    ./user/menu/wofi/wofi.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should

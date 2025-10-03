@@ -235,9 +235,9 @@ window#waybar {
             };
 
             "custom/power"= {
-                format = "⏻";
+                format = "⏻ ";
 		        tooltip= false;
-		        "on-click": "bash homePath+"/.dotfiles/user/wm/hypr/waybar/custom/power_menu.sh""
+		        on-click = "bash $HOME/.dotfiles/user/wm/hypr/waybar/custom/power_menu.sh";
             };
         };
     };
