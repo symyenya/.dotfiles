@@ -1,17 +1,18 @@
 { config, pkgs, ... }:
-
+let 
+  userhomePath = "/home/nya";
+  username = "nya";
+in
 {
   imports = [
-    ./user/wm/hypr/waybar/waybar.nix
+    (import ./user/wm/hypr/waybar/waybar.nix {homePath = userhomePath;}) 
     ./user/sh/kitty/kitty.nix
   ];
 
-
-
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "nya";
-  home.homeDirectory = "/home/nya";
+  home.username = username;
+  home.homeDirectory = userhomePath;
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
