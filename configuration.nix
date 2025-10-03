@@ -146,6 +146,8 @@ playerctl
 python3
 pavucontrol
 rofi
+wofi
+hypridle
 emacs
 vscode
 neofetch

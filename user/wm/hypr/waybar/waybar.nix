@@ -235,15 +235,9 @@ window#waybar {
             };
 
             "custom/power"= {
-                format = "⏻ ";
+                format = "⏻";
 		        tooltip= false;
-		        menu= "on-click";
-		        menu-file= homePath+"/.dotfiles/user/wm/hypr/waybar/custom/power_menu.xml";
-		        menu-actions= {
-			        lock= "hyprlock";
-			        shutdown= "shutdown";
-			        reboot= "reboot";
-		        };
+		        "on-click": "bash homePath+"/.dotfiles/user/wm/hypr/waybar/custom/power_menu.sh""
             };
         };
     };
