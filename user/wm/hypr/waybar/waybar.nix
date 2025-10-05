@@ -10,8 +10,9 @@
     transition: background-color .3s ease-out;
 }
 window#waybar {
-    background: transparent;
-    color: #c0caf5;
+    background: #fa5568;
+    background: linear-gradient(90deg,rgba(11, 24, 17, .8) 0%, rgba(9, 20, 14, .8) 20%, rgba(20, 26, 22, .8) 40%, rgba(167, 63, 70, .8) 45%, rgba(169, 50, 56, .8) 50%, rgba(144, 41, 46, .8) 55%, rgba(230, 62, 65, .8) 60%, rgba(240, 97, 92, .8) 65%, rgba(92, 48, 54, .8) 70%, rgba(9, 22, 15, .8) 100%);
+    color: #FECDEF;
     font-family: 
         SpaceMono Nerd Font,
         feather;
@@ -22,7 +23,7 @@ window#waybar {
 .modules-center,
 .modules-right
 {
-    background: rgba(0, 0, 8, .7);
+    background: transparent;
     margin: 5px 10px;
     padding: 0 5px;
     border-radius: 15px;
@@ -51,11 +52,12 @@ window#waybar {
 #scratchpad,
 #power-profiles-daemon,
 #language,
-#mpd {
-    padding: 0 10px;
+#mpris {
+    padding: 0px 10px 0px 10px;
     border-radius: 15px;
 }
 
+#workspaces button:hover,
 #clock:hover,
 #battery:hover,
 #cpu:hover,
@@ -73,8 +75,9 @@ window#waybar {
 #scratchpad:hover,
 #power-profiles-daemon:hover,
 #language:hover,
-#mpd:hover {
-    background: rgba(26, 27, 38, 0.9);
+#pulseaudio-slider:hover,
+#mpris:hover {
+    background: rgba(194, 46, 52, .7);
 }
 
 
@@ -85,19 +88,13 @@ window#waybar {
     feather;
   font-weight: 900;
   font-size: 13pt;
-  color: #c0caf5;
+  color: #FECDEF;
   border:none;
   border-radius: 15px;
 }
 
 #workspaces button.active {
-    background: #13131d; 
-}
-
-#workspaces button:hover {
-  background: #11111b;
-  color: #cdd6f4;
-  box-shadow: none;
+    background: #E46C87; 
 }
 
 #pulseaudio-slider {
@@ -121,7 +118,7 @@ window#waybar {
 #pulseaudio-slider highlight {
     min-width: 10px;
     border-radius: 5px;
-    background-color: #cdd6f4;
+    background-color: #FECDEF;
 }
                 '';
     settings = {
@@ -132,12 +129,13 @@ window#waybar {
             spacing= 4;
             modules-left= [
                 "hyprland/workspaces"
-            ];
-            modules-center= [
-	            "image"
                 "mpris"
             ];
+            modules-center= [
+	            
+            ];
             modules-right = [
+                "custom/notifications"
 	            "pulseaudio"
                 "pulseaudio/slider"
                 "hyprland/language"
@@ -193,8 +191,8 @@ window#waybar {
 
             "mpris"= {
                 player= "spotify";
-	            format= "{title} - {artist}";
-	            format-paused= "{status_icon} - {title} - {artist}";
+	            format= " {title} - {artist}";
+	            format-paused= " {title} - {artist} {status_icon}";
 	            player-icons= {
 		            default= "▶";
 		            mpv= "🎵";
@@ -202,6 +200,7 @@ window#waybar {
                 interval= 2;
 	            status-icons= {
 		            "paused"= "⏸";
+                    "playing" = "▶";
 	            };
             };
 
@@ -238,6 +237,24 @@ window#waybar {
                 format = "⏻ ";
 		        tooltip= false;
 		        on-click = "bash $HOME/.dotfiles/user/wm/hypr/waybar/custom/power_menu.sh";
+            };
+            "custom/notifications"= {
+		        tooltip= false;
+		        on-click = "bash $HOME/.dotfiles/user/wm/hypr/waybar/custom/dunst_show_all.sh";
+                format= "{icon} {text}";
+                exec = "bash $HOME/.dotfiles/user/wm/hypr/waybar/custom/dunst_notify.sh";
+                interval = 2;
+                return-type= "json";
+                on-click-right = "dunstctl set-paused toggle";
+                on-click-middle = "dunstctl history-clear";
+                format-icons= {
+                    "paused"= "";
+                    "unpaused"= "";
+                    };
+            };
+            tray = {
+                icon-size= 21;
+                spacing= 10;
             };
         };
     };

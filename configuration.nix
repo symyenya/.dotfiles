@@ -105,7 +105,7 @@
 
   #Install Steam
   programs.steam.enable = true;
-  programs.steam.gamescopeSession.enable = true;
+  programs.steam.gamescopeSession.enable = false;
   programs.gamemode.enable = true;
 
   programs.gamescope.enable = true;
@@ -145,12 +145,12 @@ hyprlock
 playerctl
 python3
 pavucontrol
-rofi
 wofi
 hypridle
 emacs
 vscode
 neofetch
+qimgv
   ];
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

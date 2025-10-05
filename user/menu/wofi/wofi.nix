@@ -9,25 +9,26 @@
                 }
   
                 window {
-                    background-color: rgba(0, 0, 8, .7);
+                    background-color: rgba(11, 24, 17, .8);
                     padding: 0px;
                 }
                 #input {
                     border: 0px;
-                    background-color: rgba(0, 0, 8, .7);
+                    background-color: rgba(11, 24, 17, .8);
+                    color: #FECDEF;
                 }
                 #entry {
                     padding-left: 0px;
                     padding-right: 0px;
                 }
                 #entry:selected {
-                    background-color: rgba(255, 102, 153, .7);
+                    background-color: rgba(194, 46, 52, .7);
                 }
 
                 #text {
                     margin: 5px;
                     border: 0px;
-                    color: #c0caf5;
+                    color: #FECDEF;
                 }
                 #inner-box {
                     margin: 0px;
