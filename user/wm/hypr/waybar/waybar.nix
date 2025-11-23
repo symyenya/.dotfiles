@@ -183,12 +183,6 @@ window#waybar {
     	        orientation="horizontal";
             };
 
-            "image"= {
-                exec=homePath+"/.dotfiles/user/wm/hypr/waybar/custom/album_art.sh";
-                size= 36;
-                interval= 30;
-            };
-
             "mpris"= {
                 player= "spotify";
 	            format= " {title} - {artist}";
