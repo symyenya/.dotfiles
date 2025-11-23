@@ -15,6 +15,9 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    #Wallpaper Manager
+    awww.url = "git+https://codeberg.org/LGFae/awww";
   };
 
   outputs = {self, nixpkgs, lanzaboote, home-manager, ...}:
@@ -35,6 +38,7 @@
               environment.systemPackages = [
                 # For debugging and troubleshooting Secure Boot.
                 pkgs.sbctl
+                inputs.awww.packages.${pkgs.system}.awww
               ];
 
               # Lanzaboote currently replaces the systemd-boot module.
