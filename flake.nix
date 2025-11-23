@@ -20,15 +20,17 @@
     awww.url = "git+https://codeberg.org/LGFae/awww";
   };
 
-  outputs = {self, nixpkgs, lanzaboote, home-manager, ...}:
+  outputs = {self, nixpkgs, lanzaboote, home-manager, awww, ...} @ inputs:
     let
-      lib = nixpkgs.lib;
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      #lib = nixpkgs.lib;
+      #system = "x86_64-linux";
+      #pkgs = nixpkgs.legacyPackages.${system};
     in {
       nixosConfigurations = {
-        nyaOS = lib.nixosSystem {
-          inherit system;
+        nyaOS = inputs.nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs;
+          };
           modules = [
             ./configuration.nix
             lanzaboote.nixosModules.lanzaboote
@@ -38,14 +40,14 @@
               environment.systemPackages = [
                 # For debugging and troubleshooting Secure Boot.
                 pkgs.sbctl
-                inputs.awww.packages.${pkgs.system}.awww
+                inputs.awww.packages.${pkgs.stdenv.hostPlatform.system}.awww
               ];
 
               # Lanzaboote currently replaces the systemd-boot module.
               # This setting is usually set to true in configuration.nix
               # generated at installation time. So we force it to false
               # for now.
-              boot.loader.systemd-boot.enable = lib.mkForce false;
+              boot.loader.systemd-boot.enable = inputs.nixpkgs.lib.mkForce false;
 
               boot.lanzaboote = {
                 enable = true;
@@ -57,7 +59,7 @@
       };
       homeConfigurations = {
         nya = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
+          inherit inputs;
           modules = [./home.nix];
         };
       };
