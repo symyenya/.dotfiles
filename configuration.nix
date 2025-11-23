@@ -125,7 +125,7 @@
 };
 
   programs.gamescope.enable = true;
-  programs.gamescope.capSysNice = true;
+  programs.gamescope.capSysNice = false;
   #Hardware Accelaration
   hardware.graphics = {
   enable = true;
