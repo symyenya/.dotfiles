@@ -151,7 +151,7 @@ libnotify
 vesktop
 spotify
 kitty
-swww
+awww
 mangohud
 protonup-qt
 lutris
