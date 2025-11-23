@@ -108,6 +108,22 @@
   programs.steam.gamescopeSession.enable = false;
   programs.gamemode.enable = true;
 
+  programs.steam.package = pkgs.steam.override {
+  extraPkgs = pkgs': with pkgs'; [
+    xorg.libXcursor
+    xorg.libXi
+    xorg.libXinerama
+    xorg.libXScrnSaver
+    libpng
+    libpulseaudio
+    libvorbis
+    stdenv.cc.cc.lib # Provides libstdc++.so.6
+    libkrb5
+    keyutils
+    # Add other libraries as needed
+  ];
+};
+
   programs.gamescope.enable = true;
   programs.gamescope.capSysNice = true;
   #Hardware Accelaration
@@ -151,6 +167,7 @@ emacs
 vscode
 neofetch
 qimgv
+keepassxc
   ];
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
