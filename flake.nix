@@ -59,8 +59,10 @@
       };
       homeConfigurations = {
         nya = home-manager.lib.homeManagerConfiguration {
-          inherit inputs;
-          modules = [./home.nix];
+          pkgs = inputs.pkgs;
+          modules = [
+            ./home.nix
+            ];
         };
       };
     };
