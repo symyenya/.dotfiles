@@ -9,7 +9,7 @@
                 width = "(200,300)";
                 height = "(0,150)";
                 offset = "(30,50)";
-                origin = "top-right";
+                origin = "top-left";
                 transparency = 10;
                 frame_color = "#eceff1";
                 font = "Droid Sans 9";
