@@ -6,17 +6,18 @@
         enable = true;
         settings = {
             global = {
-                width = "(200,300)";
+                width =  "(200,300)";
                 height = "(0,150)";
-                offset = "(30,50)";
-                origin = "top-left";
+                offset = "(250,0)";
+                origin = "top-right";
                 transparency = 10;
-                frame_color = "#eceff1";
+                frame_color = "#FECDEF";
                 font = "Droid Sans 9";
-                background = "#00000846";
+            };
+            urgency_normal = {
+                background = "#00000848";
                 foreground = "#FECDEF";
                 timeout = 10;
-
             };
         };
     };
