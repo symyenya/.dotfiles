@@ -1,15 +1,4 @@
-{ config, pkgs, lib, ...}:
-
-let 
-    fromGitHub = ref: repo: pkgs.vimUtils.buildVimPlugin {
-        pname = "${lib.strings.sanitizeDerivationName repo}";
-        version = ref;
-        src = builtins.fetchGit {
-            url = "https://github.com/${repo}.git";
-            ref = ref;
-        };
-    };
-in
+{ config, pkgs, ...}:
 {
     programs.neovim = {
         enable = true;
@@ -26,7 +15,7 @@ in
             telescope-nvim
             telescope-fzf-native-nvim
             nvim-web-devicons
-            (fromGitHub "HEAD" "elihunter173/dirbuf.nvim")
-        ]
+            dirbuf-nvim
+        ];
     };
 }
