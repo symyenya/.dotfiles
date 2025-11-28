@@ -102,7 +102,11 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
+  # Install neovim
+        programs.neovim = {
+                enable = true;
+                defaultEditor = true;
+        };
   #Install Steam
   programs.steam.enable = true;
   programs.steam.gamescopeSession.enable = false;
@@ -162,7 +166,6 @@ python3
 pavucontrol
 wofi
 hypridle
-neovim
 vscode
 neofetch
 qimgv
