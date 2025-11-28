@@ -19,7 +19,7 @@ EOF
         systemctl suspend
         ;;
     "Lock")
-        loginctl lock-session
+            hyprlock
         ;;
     "Log off")
         swaymsg exit

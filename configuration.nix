@@ -175,6 +175,7 @@ fd
 ripgrep
 zls
 tree-sitter
+vial
   ];
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
