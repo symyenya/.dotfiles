@@ -9,7 +9,7 @@ in
     ./user/sh/kitty/kitty.nix
     ./user/menu/wofi/wofi.nix
     ./user/widgets/dunst/dunst.nix
-    ./user/editor/neovim/neovim.nix
+    ./user/editor/neovim/neovim_nvf.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should

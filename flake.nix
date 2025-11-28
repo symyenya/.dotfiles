@@ -18,9 +18,15 @@
 
     #Wallpaper Manager
     awww.url = "git+https://codeberg.org/LGFae/awww";
+
+    # Home Manager Neovim Config
+    nvf = {
+      url = "github:NotAShelf/nvf/v0.8";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = {self, nixpkgs, lanzaboote, home-manager, awww, ...} @ inputs:
+  outputs = {self, nixpkgs, lanzaboote, home-manager, awww, nvf, ...} @ inputs:
     let
       #lib = nixpkgs.lib;
       #system = "x86_64-linux";
@@ -61,6 +67,7 @@
         nya = inputs.home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [
+	    nvf.homeManagerModules.default
             ./home.nix
             ];
         };
