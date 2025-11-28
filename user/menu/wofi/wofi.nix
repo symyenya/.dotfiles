@@ -43,6 +43,7 @@
                 '';
         settings = {
             hide_search=false;
+            allow_images=true;
         };
     };
 

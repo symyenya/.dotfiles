@@ -162,12 +162,14 @@ python3
 pavucontrol
 wofi
 hypridle
-emacs
+neovim
 vscode
 neofetch
 qimgv
 keepassxc
 zig
+fd
+ripgrep
   ];
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -187,6 +189,7 @@ zig
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+  networking.nameservers = [ "192.168.0.2" ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
