@@ -11,8 +11,8 @@
                         "move_down" = "j";
                         "move_left" = "h";
                         "move_right" = "l";
-                        "screen_down" = [ "d" "<c-d>" ];
-                        "screen_up" = [ "u" "<c-u>" ];                
+                        "screen_down" = [ "d" "<C-d>" ];
+                        "screen_up" = [ "u" "<C-u>" ];                
                 };
         };        
 }
