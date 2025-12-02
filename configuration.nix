@@ -154,10 +154,10 @@ dunst
 libnotify
 vesktop
 spotify
-kitty
 mangohud
 protonup-qt
 lutris
+kitty
 bottles
 krusader
 hyprlock
@@ -171,6 +171,7 @@ neofetch
 qimgv
 keepassxc
 zig
+lldb
 fd
 ripgrep
 zls

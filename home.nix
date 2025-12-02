@@ -10,6 +10,7 @@ in
     ./user/menu/wofi/wofi.nix
     ./user/widgets/dunst/dunst.nix
     ./user/editor/neovim/neovim_nvf.nix
+    ./user/editor/sioyek/sioyek.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -29,6 +30,7 @@ in
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
+                pkgs.catppuccin-cursors.mochaRed
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
