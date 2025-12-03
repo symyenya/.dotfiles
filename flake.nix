@@ -27,11 +27,7 @@
   };
 
   outputs = {self, nixpkgs, lanzaboote, home-manager, awww, nvf, ...} @ inputs:
-    let
-      #lib = nixpkgs.lib;
-      #system = "x86_64-linux";
-      #pkgs = nixpkgs.legacyPackages.${system};
-    in {
+       {
       nixosConfigurations = {
         nyaOS = inputs.nixpkgs.lib.nixosSystem {
           specialArgs = {

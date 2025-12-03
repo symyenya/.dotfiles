@@ -5,6 +5,7 @@
                 config = {
                         "background_color" = "0.0 0.0 0.0";
                         "text_highlight_color" = "1.0 0.0 0.0";
+                        "default_dark_mode" = "1";
                 };
                 bindings = {
                         "move_up" = "k";

@@ -11,13 +11,20 @@ in
     ./user/widgets/dunst/dunst.nix
     ./user/editor/neovim/neovim_nvf.nix
     ./user/editor/sioyek/sioyek.nix
+    ./user/filemanager/ranger/ranger.nix
+    ./user/sh/hyfetch/hyfetch.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = username;
   home.homeDirectory = userhomePath;
+        xdg.mimeApps.enable = true;
 
+        xdg.mimeApps.defaultApplications = {
+                "application/pdf" = "sioyek.desktop";        
+        };
+        xdg.configFile."mimeapps.list".force = true;
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
