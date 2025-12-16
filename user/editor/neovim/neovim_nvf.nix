@@ -1,39 +1,40 @@
 {pkgs, ...}:
 {
-  programs.nvf = {
-    enable = true;
-    # your settings need to go into the settings attribute set
-    # most settings are documented in the appendix
-    settings = {
-	vim = {
+    programs.nvf = {
+        enable = true;
+        # your settings need to go into the settings attribute set
+        # most settings are documented in the appendix
+        settings = {
+	        vim = {
                 theme = {
-                        enable = true;
-                        name = "gruvbox";
-                        style = "dark";
+                    enable = true;
+                    name = "gruvbox";
+                    style = "dark";
                 };
-        	viAlias = true; 
-        	vimAlias = true;
-        	lsp = {
-          		enable = true;
-      		};
-          	filetree.nvimTree.setupOpts.view = {
-      			number = true;
-			relativenumber = true;
-		};
-		languages = {
-			enableTreesitter = true;
-			nix.enable = true;
-			zig.enable = true;
-		};
-		statusline.lualine.enable = true;
-		telescope.enable = true;
-		autocomplete.nvim-cmp.enable = true;
-                # Extra Plugins to load from nixpkgs
+        	    viAlias = true; 
+        	    vimAlias = true;
+        	    lsp = {
+          		    enable = true;
+      		    };
+          	    filetree.nvimTree.setupOpts.view = {
+      			    number = true;
+			        relativenumber = true;
+		        };
+		        languages = {
+			        enableTreesitter = true;
+                    nix.enable = true;
+                    zig.enable = true;
+                    nim.enable = true;
+                };
+                statusline.lualine.enable = true;
+                telescope.enable = true;
+                autocomplete.nvim-cmp.enable = true;
+                        # Extra Plugins to load from nixpkgs
                 startPlugins = [pkgs.vimPlugins.dirbuf-nvim];
                 # Settings
                 options = {
-                        tabstop = 4;
-                        shiftwidth = 4;
+                    tabstop = 4;
+                    shiftwidth = 4;
                 };
                 # Keybinds 
                 keymaps = [
@@ -47,6 +48,14 @@
                 globals = {
                     mapleader = ",";
                     maplocalleader = " ";
+                };
+                diagnostics = {
+                    enable = true;
+                    config = {
+                        virtual_lines = true;
+                        signs = true;
+                        underline = true;
+                    };
                 };
       	};
     };

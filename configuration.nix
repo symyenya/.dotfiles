@@ -97,8 +97,12 @@
   # Install Hyprland
   programs.hyprland.enable = true;
   #Insatll Waybar
-  programs.waybar.enable = true;
-
+  programs.waybar.enable = false;
+  systemd.services.waybar = {
+        #wantedBy = lib.mkForce []; # Prevents it from being pulled in by any target
+  # Or more forcefully if needed:
+  enable = false; # This completely disables the service definition
+};
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   # Install neovim
@@ -108,7 +112,7 @@
         };
   #Install Steam
   programs.steam.enable = true;
-  programs.steam.gamescopeSession.enable = false;
+  programs.steam.gamescopeSession.enable = true;
   programs.gamemode.enable = true;
 
   programs.steam.package = pkgs.steam.override {
@@ -176,6 +180,7 @@ ripgrep
 zls
 tree-sitter
 vial
+easyeffects
   ];
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
