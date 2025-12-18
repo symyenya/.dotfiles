@@ -9,4 +9,4 @@ waybar &
 
 dunst &
 
-easyeffects &
+easyeffects -w --service-mode &

@@ -39,6 +39,7 @@ in
   # environment.
   home.packages = [
                 pkgs.catppuccin-cursors.mochaRed
+        pkgs.librewolf
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello

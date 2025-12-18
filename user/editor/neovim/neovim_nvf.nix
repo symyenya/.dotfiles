@@ -8,8 +8,8 @@
 	        vim = {
                 theme = {
                     enable = true;
-                    name = "gruvbox";
-                    style = "dark";
+                    name = "mellow";
+                    #style = "mocha";
                 };
         	    viAlias = true; 
         	    vimAlias = true;
