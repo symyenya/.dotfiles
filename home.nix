@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 let 
   userhomePath = "/home/nya";
   username = "nya";
@@ -40,6 +40,7 @@ in
   home.packages = [
                 pkgs.catppuccin-cursors.mochaRed
         pkgs.librewolf
+        pkgs.protonup-qt
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello

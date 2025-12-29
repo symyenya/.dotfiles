@@ -24,7 +24,7 @@
 			        enableTreesitter = true;
                     nix.enable = true;
                     zig.enable = true;
-                    nim.enable = true;
+                    gleam.enable = true;
                 };
                 statusline.lualine.enable = true;
                 telescope.enable = true;
@@ -52,7 +52,7 @@
                 diagnostics = {
                     enable = true;
                     config = {
-                        virtual_lines = true;
+                        virtual_text = true;
                         signs = true;
                         underline = true;
                     };

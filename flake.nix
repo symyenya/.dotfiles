@@ -56,16 +56,13 @@
                 pkiBundle = "/var/lib/sbctl";
               };
             })
+                home-manager.nixosModules.home-manager {
+                    home-manager.useGlobalPkgs = true;
+                    home-manager.useUserPackages = true;
+                    home-manager.users.nya = ./home.nix;
+                            home-manager.sharedModules = [nvf.homeManagerModules.default];
+                }
           ];
-        };
-      };
-      homeConfigurations = {
-        nya = inputs.home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          modules = [
-	    nvf.homeManagerModules.default
-            ./home.nix
-            ];
         };
       };
     };
