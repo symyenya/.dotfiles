@@ -58,9 +58,23 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # DESktop Portals
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  # Desktop Portals
+  xdg.portal = {
+        enable = true;
+        wlr.enable = false;
+        xdgOpenUsePortal = false;
+        extraPortals = [ 
+            pkgs.xdg-desktop-portal-gtk
+            pkgs.xdg-desktop-portal-hyprland
+        ];
+    };
+    # Install Hyprland
+    programs.hyprland = {
+        enable = true;
+        xwayland.enable = true;
+        portalPackage = pkgs.xdg-desktop-portal-hyprland;
+    };
+
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -76,7 +90,13 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
-  hardware.alsa.enablePersistence = true;
+    hardware.alsa.enablePersistence = true;
+    hardware.sane ={
+        enable = true;
+        brscan4 = {
+            enable = true;
+        };
+    };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -85,7 +105,7 @@
   users.users.nya = {
     isNormalUser = true;
     description = "Simon Nya";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "scanner" "lp" ];
     packages = with pkgs; [
     #  thunderbird
     ];
@@ -94,8 +114,6 @@
   # Install firefox.
   programs.firefox.enable = true;
 
-  # Install Hyprland
-  programs.hyprland.enable = true;
   #Insatll Waybar
   programs.waybar.enable = false;
   systemd.services.waybar = {
@@ -158,14 +176,9 @@ libnotify
 vesktop
 spotify
 mangohud
-protonup-qt
-lutris
 kitty
-bottles
-krusader
 hyprlock
 playerctl
-python3
 pavucontrol
 wofi
 hypridle
@@ -173,11 +186,9 @@ vscode
 neofetch
 qimgv
 keepassxc
-zig
 lldb
 fd
 ripgrep
-zls
 tree-sitter
 vial
 easyeffects
@@ -200,6 +211,16 @@ easyeffects
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+    networking.firewall.extraCommands = ''
+    # Disable Logging of Speedport Router Website Discovery
+    iptables \
+      --insert nixos-fw-log-refuse 1 \
+      --source 192.168.0.1 \
+      --protocol tcp \
+      -m multiport
+      --destination-ports 80,8080,443,8081 \
+      --jump nixos-fw-refuse
+  '';
   networking.nameservers = [ "192.168.0.2" ];
 
   # This value determines the NixOS release from which the default
