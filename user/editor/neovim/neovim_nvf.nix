@@ -25,6 +25,7 @@
                     nix.enable = true;
                     zig.enable = true;
                     gleam.enable = true;
+                    rust.enable = true;
                 };
                 statusline.lualine.enable = true;
                 telescope.enable = true;
@@ -44,6 +45,37 @@
                         silent = true;
                         action = ":Telescope find_files<CR>";
                     }
+                    {
+                        key = "<leader>st";
+                        mode = "n";
+                        silent = true;
+                        action = ":split<CR><C-W>\j:term<CR>\i";
+                    }
+                    {
+                        key = "<A-j>";
+                        mode = "n";
+                        action = "<C-w>\j";
+                    }
+                    {
+                        key = "<A-h>";
+                        mode = "n";
+                        action = "<C-w>\h";
+                    }
+                    {
+                        key = "<A-k>";
+                        mode = "n";
+                        action = "<C-w>\k";
+                    }
+                    {
+                        key = "<A-l>";
+                        mode = "n";
+                        action = "<C-w>\l";
+                    }
+                    {
+                        key = "<Esc>";
+                        mode = "t";
+                        action = "<C-\\><C-n>";
+                    }
                 ];
                 globals = {
                     mapleader = ",";
@@ -55,6 +87,7 @@
                         virtual_text = true;
                         signs = true;
                         underline = true;
+                        update_in_insert = true;
                     };
                 };
       	};

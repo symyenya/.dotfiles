@@ -148,9 +148,21 @@
     # Add other libraries as needed
   ];
 };
-
-  programs.gamescope.enable = true;
-  programs.gamescope.capSysNice = true;
+    programs.gamescope = {
+        enable = true;
+        capSysNice = false;
+    };
+    services.ananicy = {
+        enable = false;
+        package = pkgs.ananicy-cpp;
+        rulesProvider = pkgs.ananicy-cpp;
+        extraRules = [
+          {
+            "name" = "gamescope";
+            "nice" = -20;
+          }
+        ];
+    };
   #Hardware Accelaration
   hardware.graphics = {
   enable = true;
@@ -192,6 +204,7 @@ ripgrep
 tree-sitter
 vial
 easyeffects
+        gamescope-wsi
   ];
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -211,16 +224,7 @@ easyeffects
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
-    networking.firewall.extraCommands = ''
-    # Disable Logging of Speedport Router Website Discovery
-    iptables \
-      --insert nixos-fw-log-refuse 1 \
-      --source 192.168.0.1 \
-      --protocol tcp \
-      -m multiport
-      --destination-ports 80,8080,443,8081 \
-      --jump nixos-fw-refuse
-  '';
+    networking.firewall.logRefusedConnections = false;
   networking.nameservers = [ "192.168.0.2" ];
 
   # This value determines the NixOS release from which the default

@@ -1,5 +1,3 @@
-{config, pkgs, ...}:
-
 {
 
     programs.kitty = {
@@ -7,7 +5,7 @@
         settings = {
             background_opacity = 0.7;
             foreground = "#FECDEF";
-            background = "#000008";
+            background = "#080808";
             cursor                = "#FECDEF";
             selection_background  = "#ffead3";
             color0                = "#17384c";

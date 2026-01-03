@@ -14,6 +14,7 @@ in
     ./user/filemanager/ranger/ranger.nix
     ./user/sh/hyfetch/hyfetch.nix
     ./user/wm/hypr/hyprland.nix    
+        ./user/sh/bash/bash.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
