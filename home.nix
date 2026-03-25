@@ -42,6 +42,7 @@ in
                 pkgs.catppuccin-cursors.mochaRed
         pkgs.librewolf
         pkgs.protonup-qt
+        pkgs.fastfetch
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello

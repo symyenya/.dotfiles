@@ -55,8 +55,16 @@
     variant = "";
   };
 
+    services.flatpak.enable = true;
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
+
+    services.avahi = {
+        enable = true;
+        nssmdns4 = true;
+        openFirewall = true;
+    };
 
   # Desktop Portals
   xdg.portal = {
@@ -90,13 +98,6 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
-    hardware.alsa.enablePersistence = true;
-    hardware.sane ={
-        enable = true;
-        brscan4 = {
-            enable = true;
-        };
-    };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -135,10 +136,10 @@
 
   programs.steam.package = pkgs.steam.override {
   extraPkgs = pkgs': with pkgs'; [
-    xorg.libXcursor
-    xorg.libXi
-    xorg.libXinerama
-    xorg.libXScrnSaver
+    libXcursor
+    libXi
+    libXinerama
+    libXScrnSaver
     libpng
     libpulseaudio
     libvorbis
@@ -195,17 +196,25 @@ pavucontrol
 wofi
 hypridle
 vscode
-neofetch
 qimgv
 keepassxc
 lldb
 fd
 ripgrep
 tree-sitter
-vial
 easyeffects
         gamescope-wsi
+        vial
+        via 
+        qmk-udev-rules
   ];
+    services.udev = {
+        packages = with pkgs; [
+            qmk-udev-rules # the only relevant
+            via
+            vial
+        ];
+    };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -218,6 +227,8 @@ easyeffects
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
+    #ssh Agent for github 
+    programs.ssh.startAgent = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
