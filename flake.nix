@@ -1,69 +1,78 @@
 {
-  description = "A very basic flake";
+    description = "A very basic flake";
 
-  inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    inputs = {
+        nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
-    lanzaboote = {
-      url = "github:nix-community/lanzaboote/v1.0.0";
+        lanzaboote = {
+            url = "github:nix-community/lanzaboote/v1.0.0";
 
-      # Optional but recommended to limit the size of your system closure.
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    home-manager = {
-      url = "github:nix-community/home-manager/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    #Wallpaper Manager
-    awww.url = "git+https://codeberg.org/LGFae/awww";
-
-    # Home Manager Neovim Config
-    nvf = {
-      url = "github:NotAShelf/nvf/main";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-  };
-
-  outputs = {self, nixpkgs, lanzaboote, home-manager, awww, nvf, ...} @ inputs:
-       {
-      nixosConfigurations = {
-        nyaOS = inputs.nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs;
-          };
-          modules = [
-            ./configuration.nix
-            lanzaboote.nixosModules.lanzaboote
-
-            ({ pkgs, lib, ... }: {
-
-              environment.systemPackages = [
-                # For debugging and troubleshooting Secure Boot.
-                pkgs.sbctl
-                inputs.awww.packages.${pkgs.stdenv.hostPlatform.system}.awww
-              ];
-
-              # Lanzaboote currently replaces the systemd-boot module.
-              # This setting is usually set to true in configuration.nix
-              # generated at installation time. So we force it to false
-              # for now.
-              boot.loader.systemd-boot.enable = inputs.nixpkgs.lib.mkForce false;
-
-              boot.lanzaboote = {
-                enable = true;
-                pkiBundle = "/var/lib/sbctl";
-              };
-            })
-                home-manager.nixosModules.home-manager {
-                    home-manager.useGlobalPkgs = true;
-                    home-manager.useUserPackages = true;
-                    home-manager.users.nya = ./home.nix;
-                            home-manager.sharedModules = [nvf.homeManagerModules.default];
-                }
-          ];
+            # Optional but recommended to limit the size of your system closure.
+            inputs.nixpkgs.follows = "nixpkgs";
         };
-      };
+
+        home-manager = {
+            url = "github:nix-community/home-manager/master";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+
+        #Wallpaper Manager
+        awww.url = "git+https://codeberg.org/LGFae/awww";
+
+        mango = {
+            url = "github:mangowm/mango";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+
+        # Home Manager Neovim Config
+        nvf = {
+            url = "github:NotAShelf/nvf/main";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
+
+    outputs = {self, nixpkgs, lanzaboote, home-manager, awww, nvf, ...} @ inputs:
+        {
+            nixosConfigurations = {
+                nyaOS = inputs.nixpkgs.lib.nixosSystem {
+                    specialArgs = {
+                        inherit inputs;
+                    };
+                    modules = [
+                        ./configuration.nix
+                        lanzaboote.nixosModules.lanzaboote
+                        inputs.mango.nixosModules.mango
+                        {
+                            programs.mango.enable = true;
+                        }
+
+                        ({ pkgs, lib, ... }: {
+
+                            environment.systemPackages = [
+                                # For debugging and troubleshooting Secure Boot.
+                                pkgs.sbctl
+                                inputs.awww.packages.${pkgs.stdenv.hostPlatform.system}.awww
+                            ];
+
+                            # Lanzaboote currently replaces the systemd-boot module.
+                            # This setting is usually set to true in configuration.nix
+                            # generated at installation time. So we force it to false
+                            # for now.
+                            boot.loader.systemd-boot.enable = inputs.nixpkgs.lib.mkForce false;
+
+                            boot.lanzaboote = {
+                                enable = true;
+                                pkiBundle = "/var/lib/sbctl";
+                            };
+                        })
+                        home-manager.nixosModules.home-manager {
+                            home-manager.useGlobalPkgs = true;
+                            home-manager.useUserPackages = true;
+                            home-manager.users.nya = ./home.nix;
+                            home-manager.sharedModules = [nvf.homeManagerModules.default inputs.mango.hmModules.mango];
+                        }
+                    ];
+                };
+            };
+        };
 }

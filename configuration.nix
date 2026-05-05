@@ -73,15 +73,16 @@
         xdgOpenUsePortal = false;
         extraPortals = [ 
             pkgs.xdg-desktop-portal-gtk
-            pkgs.xdg-desktop-portal-hyprland
+            pkgs.xdg-desktop-portal-wlr
+            #pkgs.xdg-desktop-portal-hyprland
         ];
     };
     # Install Hyprland
-    programs.hyprland = {
-        enable = true;
-        xwayland.enable = true;
-        portalPackage = pkgs.xdg-desktop-portal-hyprland;
-    };
+    # programs.hyprland = {
+    #     enable = true;
+    #     xwayland.enable = true;
+    #     portalPackage = pkgs.xdg-desktop-portal-hyprland;
+    # };
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
@@ -190,7 +191,6 @@ vesktop
 spotify
 mangohud
 kitty
-hyprlock
 playerctl
 pavucontrol
 wofi
