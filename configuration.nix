@@ -5,60 +5,60 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+    imports =
+        [ # Include the results of the hardware scan.
+            ./hardware-configuration.nix
+        ];
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+    # Bootloader.
+    boot.loader.systemd-boot.enable = true;
+    boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nyaOS"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  nix.settings.experimental-features = ["nix-command" "flakes"];
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+    networking.hostName = "nyaOS"; # Define your hostname.
+    # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+    nix.settings.experimental-features = ["nix-command" "flakes"];
+    # Configure network proxy if necessary
+    # networking.proxy.default = "http://user:password@proxy:port/";
+    # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Enable networking
-  networking.networkmanager.enable = true;
+    # Enable networking
+    networking.networkmanager.enable = true;
 
-  # Set your time zone.
-  time.timeZone = "Europe/Berlin";
+    # Set your time zone.
+    time.timeZone = "Europe/Berlin";
 
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
+    # Select internationalisation properties.
+    i18n.defaultLocale = "en_US.UTF-8";
 
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "de_DE.UTF-8";
-    LC_IDENTIFICATION = "de_DE.UTF-8";
-    LC_MEASUREMENT = "de_DE.UTF-8";
-    LC_MONETARY = "de_DE.UTF-8";
-    LC_NAME = "de_DE.UTF-8";
-    LC_NUMERIC = "de_DE.UTF-8";
-    LC_PAPER = "de_DE.UTF-8";
-    LC_TELEPHONE = "de_DE.UTF-8";
-    LC_TIME = "de_DE.UTF-8";
-  };
+    i18n.extraLocaleSettings = {
+        LC_ADDRESS = "de_DE.UTF-8";
+        LC_IDENTIFICATION = "de_DE.UTF-8";
+        LC_MEASUREMENT = "de_DE.UTF-8";
+        LC_MONETARY = "de_DE.UTF-8";
+        LC_NAME = "de_DE.UTF-8";
+        LC_NUMERIC = "de_DE.UTF-8";
+        LC_PAPER = "de_DE.UTF-8";
+        LC_TELEPHONE = "de_DE.UTF-8";
+        LC_TIME = "de_DE.UTF-8";
+    };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.videoDrivers = [ "amdgpu" ];
-  # Enable the GNOME Desktop Environment.
-  services.displayManager.gdm.enable = true;
- # services.xserver.desktopManager.gnome.enable = true;
+    # Enable the X11 windowing system.
+    services.xserver.enable = true;
+    services.xserver.videoDrivers = [ "amdgpu" ];
+    # Enable the GNOME Desktop Environment.
+    services.displayManager.gdm.enable = true;
+    # services.xserver.desktopManager.gnome.enable = true;
 
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
+    # Configure keymap in X11
+    services.xserver.xkb = {
+        layout = "us";
+        variant = "";
+    };
 
     services.flatpak.enable = true;
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
+    # Enable CUPS to print documents.
+    services.printing.enable = true;
 
     services.avahi = {
         enable = true;
@@ -66,8 +66,8 @@
         openFirewall = true;
     };
 
-  # Desktop Portals
-  xdg.portal = {
+    # Desktop Portals
+    xdg.portal = {
         enable = true;
         wlr.enable = false;
         xdgOpenUsePortal = false;
@@ -84,72 +84,72 @@
     #     portalPackage = pkgs.xdg-desktop-portal-hyprland;
     # };
 
-  # Enable sound with pipewire.
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
+    # Enable sound with pipewire.
+    services.pulseaudio.enable = false;
+    security.rtkit.enable = true;
+    services.pipewire = {
+        enable = true;
+        alsa.enable = true;
+        alsa.support32Bit = true;
+        pulse.enable = true;
+        # If you want to use JACK applications, uncomment this
+        #jack.enable = true;
 
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
+        # use the example session manager (no others are packaged yet so this is enabled by default,
+        # no need to redefine it in your config for now)
+        #media-session.enable = true;
+    };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+    # Enable touchpad support (enabled default in most desktopManager).
+    # services.xserver.libinput.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.nya = {
-    isNormalUser = true;
-    description = "Simon Nya";
-    extraGroups = [ "networkmanager" "wheel" "scanner" "lp" ];
-    packages = with pkgs; [
-    #  thunderbird
-    ];
-  };
+    # Define a user account. Don't forget to set a password with ‘passwd’.
+    users.users.nya = {
+        isNormalUser = true;
+        description = "Simon Nya";
+        extraGroups = [ "networkmanager" "wheel" "scanner" "lp" ];
+        packages = with pkgs; [
+            #  thunderbird
+        ];
+    };
 
-  # Install firefox.
-  programs.firefox.enable = true;
+    # Install firefox.
+    programs.firefox.enable = true;
 
-  #Insatll Waybar
-  programs.waybar.enable = false;
-  systemd.services.waybar = {
+    #Insatll Waybar
+    programs.waybar.enable = false;
+    systemd.services.waybar = {
         #wantedBy = lib.mkForce []; # Prevents it from being pulled in by any target
-  # Or more forcefully if needed:
-  enable = false; # This completely disables the service definition
-};
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-  # Install neovim
-        programs.neovim = {
-                enable = true;
-                defaultEditor = true;
-        };
-  #Install Steam
-  programs.steam.enable = true;
-  programs.steam.gamescopeSession.enable = true;
-  programs.gamemode.enable = true;
+        # Or more forcefully if needed:
+        enable = false; # This completely disables the service definition
+    };
+    # Allow unfree packages
+    nixpkgs.config.allowUnfree = true;
+    # Install neovim
+    programs.neovim = {
+        enable = true;
+        defaultEditor = true;
+    };
+    #Install Steam
+    programs.steam.enable = true;
+    programs.steam.gamescopeSession.enable = true;
+    programs.gamemode.enable = true;
 
-  programs.steam.package = pkgs.steam.override {
-  extraPkgs = pkgs': with pkgs'; [
-    libXcursor
-    libXi
-    libXinerama
-    libXScrnSaver
-    libpng
-    libpulseaudio
-    libvorbis
-    stdenv.cc.cc.lib # Provides libstdc++.so.6
-    libkrb5
-    keyutils
-    # Add other libraries as needed
-  ];
-};
+    programs.steam.package = pkgs.steam.override {
+        extraPkgs = pkgs': with pkgs'; [
+            libXcursor
+            libXi
+            libXinerama
+            libXScrnSaver
+            libpng
+            libpulseaudio
+            libvorbis
+            stdenv.cc.cc.lib # Provides libstdc++.so.6
+            libkrb5
+            keyutils
+            # Add other libraries as needed
+        ];
+    };
     programs.gamescope = {
         enable = true;
         capSysNice = false;
@@ -159,55 +159,55 @@
         package = pkgs.ananicy-cpp;
         rulesProvider = pkgs.ananicy-cpp;
         extraRules = [
-          {
-            "name" = "gamescope";
-            "nice" = -20;
-          }
+            {
+                "name" = "gamescope";
+                "nice" = -20;
+            }
         ];
     };
-  #Hardware Accelaration
-  hardware.graphics = {
-  enable = true;
-  enable32Bit = true;
-  };
+    #Hardware Accelaration
+    hardware.graphics = {
+        enable = true;
+        enable32Bit = true;
+    };
 
-  # FONTS
-  fonts.packages = with pkgs; [
-  font-awesome
-];
+    # FONTS
+    fonts.packages = with pkgs; [
+        font-awesome
+    ];
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
-git
-niv
-sbctl
-alsa-utils
-dunst
-libnotify
-vesktop
-spotify
-mangohud
-kitty
-playerctl
-pavucontrol
-wofi
-hypridle
-vscode
-qimgv
-keepassxc
-lldb
-fd
-ripgrep
-tree-sitter
-easyeffects
+    # List packages installed in system profile. To search, run:
+    # $ nix search wget
+    environment.systemPackages = with pkgs; [
+        #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+        #  wget
+        git
+        niv
+        sbctl
+        alsa-utils
+        dunst
+        libnotify
+        vesktop
+        spotify
+        mangohud
+        kitty
+        playerctl
+        pavucontrol
+        wofi
+        hypridle
+        vscode
+        qimgv
+        keepassxc
+        lldb
+        fd
+        ripgrep
+        tree-sitter
+        easyeffects
         gamescope-wsi
         vial
         via 
         qmk-udev-rules
-  ];
+    ];
     services.udev = {
         packages = with pkgs; [
             qmk-udev-rules # the only relevant
@@ -215,35 +215,41 @@ easyeffects
             vial
         ];
     };
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+    # Some programs need SUID wrappers, can be configured further or are
+    # started in user sessions.
+    # programs.mtr.enable = true;
+    # programs.gnupg.agent = {
+    #   enable = true;
+    #   enableSSHSupport = true;
+    # };
 
-  # List services that you want to enable:
+    # List services that you want to enable:
 
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+    # Enable the OpenSSH daemon.
+    # services.openssh.enable = true;
     #ssh Agent for github 
-    programs.ssh.startAgent = true;
+    programs.ssh = {
+        startAgent = true;
+        extraConfig = ''
+            Host github.com
+            IdentityFile ~/.ssh/symyenyagit
+        '';
+    };
 
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+    # Open ports in the firewall.
+    # networking.firewall.allowedTCPPorts = [ ... ];
+    # networking.firewall.allowedUDPPorts = [ ... ];
+    # Or disable the firewall altogether.
+    # networking.firewall.enable = false;
     networking.firewall.logRefusedConnections = false;
-  networking.nameservers = [ "192.168.0.2" ];
+    networking.nameservers = [ "192.168.0.2" ];
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "25.05"; # Did you read the comment?
+    # This value determines the NixOS release from which the default
+    # settings for stateful data, like file locations and database versions
+    # on your system were taken. It‘s perfectly fine and recommended to leave
+    # this value at the release version of the first install of this system.
+    # Before changing this value read the documentation for this option
+    # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+    system.stateVersion = "25.05"; # Did you read the comment?
 
 }
