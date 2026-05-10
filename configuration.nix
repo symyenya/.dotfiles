@@ -242,7 +242,25 @@
     # Or disable the firewall altogether.
     # networking.firewall.enable = false;
     networking.firewall.logRefusedConnections = false;
-    networking.nameservers = [ "192.168.0.2" ];
+    networking.nameservers = [
+        "1.1.1.1"
+        "1.0.0.1"
+    ];
+
+    services.mullvad-vpn.enable = true;
+
+    services.resolved = {
+        enable = true;
+        settings.Resolve = {
+            DNSSEC = "true";
+            Domains = [ "~." ];
+            DNSOverTLS = "true";
+            FallbackDNS = [
+                "1.1.1.1"
+                "1.0.0.1"
+            ];
+        };
+    };
 
     # This value determines the NixOS release from which the default
     # settings for stateful data, like file locations and database versions

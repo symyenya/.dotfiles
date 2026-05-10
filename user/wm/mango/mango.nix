@@ -21,6 +21,15 @@
                 "SUPER,9,view,9"
                 "SUPER,j,focusstack,next"
                 "SUPER,k,focusstack,prev"
+                "SUPER+SHIFT,1,tag,1"
+                "SUPER+SHIFT,2,tag,2"
+                "SUPER+SHIFT,3,tag,3"
+                "SUPER+SHIFT,4,tag,4"
+                "SUPER+SHIFT,5,tag,5"
+                "SUPER+SHIFT,6,tag,6"
+                "SUPER+SHIFT,7,tag,7"
+                "SUPER+SHIFT,8,tag,8"
+                "SUPER+SHIFT,9,tag,9"
             ];
             tagrule = [
                 "id:1,layout_name:tile"
