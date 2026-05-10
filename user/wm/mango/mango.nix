@@ -10,6 +10,7 @@
                 "Alt,Return,spawn,kitty"
                 "ALT,R,setkeymode,resize"  # Enter resize mode
                 "SUPER,f,togglefullscreen"  
+                "SUPER+SHIFT,f,togglefakefullscreen"  
                 "SUPER,1,view,1"
                 "SUPER,2,view,2"
                 "SUPER,3,view,3"
@@ -30,7 +31,24 @@
                 "SUPER+SHIFT,7,tag,7"
                 "SUPER+SHIFT,8,tag,8"
                 "SUPER+SHIFT,9,tag,9"
+                "SUPER+SHIFT,Up,exchange_client,up"
+                "SUPER+SHIFT,Down,exchange_client,down"
+                "SUPER+SHIFT,Left,exchange_client,left"
+                "SUPER+SHIFT,Right,exchange_client,right"
+                "SUPER,t,setlayout,tile"
+                "SUPER,v,setlayout,vertical_tile"
             ];
+            keymode = {
+                resize = {
+                    bind = [
+                        "NONE,Left,resizewin,-10,0"
+                        "NONE,Right,resizewin,+10,0"
+                        "NONE,Up,resizewin,0,-10"
+                        "NONE,Down,resizewin,0,+10"
+                        "NONE,Escape,setkeymode,default"
+                    ];
+                };
+            };
             tagrule = [
                 "id:1,layout_name:tile"
                 "id:2,layout_name:tile"
